@@ -21,6 +21,11 @@ Query Store Replay is a Powershell script that allows you to replay query worklo
 - Query Store feature enabled on the source database
 - SQL Server Management Objects (SMO) installed on the machine that will run the Query Store Replay script
 
+## Additional information
+The Query Store Replay script is developed and maintained by Enrico van de Laar (Twitter: @evdlaar).
+If you run into any issues or bugs when using this script please let me know!
+
+Special thanks goes to Rob Sewell (@sqldbawithbeard) for helping me out with Powershell!
 
 ## License
 [MIT](/license.md)
