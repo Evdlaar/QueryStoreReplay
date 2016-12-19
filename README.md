@@ -9,7 +9,7 @@
 [forks badge]:https://img.shields.io/github/forks/Evdlaar/QueryStoreReplay.svg
 [issues badge]:https://img.shields.io/github/issues/Evdlaar/QueryStoreReplay.svg
 
-[licence]:https://github.com/Evdlaar/QueryStoreReplay/blob/master/LICENSE.md
+[licence]:https://github.com/Evdlaar/QueryStoreReplay/blob/master/LICENSE
 [stars]:https://github.com/Evdlaar/QueryStoreReplay/stargazers
 [forks]:https://github.com/Evdlaar/QueryStoreReplay/network
 [issues]:https://github.com/Evdlaar/QueryStoreReplay/issues
