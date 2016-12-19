@@ -1,4 +1,8 @@
 # QueryStoreReplay
+[![licence badge]][licence]
+[![stars badge]][stars]
+[![forks badge]][forks]
+[![issues badge]][issues]
 
 [licence badge]:https://img.shields.io/badge/license-MIT-blue.svg
 [stars badge]:https://img.shields.io/github/stars/Evdlaar/QueryStoreReplay.svg
