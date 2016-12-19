@@ -17,9 +17,12 @@
 Query Store Replay is a Powershell script that allows you to replay query workload directly from a Query Store enabled database to either the same database or a database on another machine.
 
 ## Prerequisites
-- Microsoft SQL Server 2016
+- Microsoft SQL Server 2016 or higher
 - Query Store feature enabled on the source database
 - SQL Server Management Objects (SMO) installed on the machine that will run the Query Store Replay script
+
+## Start using the Query Store Replay script
+All the information you need to start using the Query Store Replay script can be found on the wiki: https://github.com/Evdlaar/QueryStoreReplay/wiki.
 
 ## Additional information
 The Query Store Replay script is developed and maintained by Enrico van de Laar (Twitter: @evdlaar).
