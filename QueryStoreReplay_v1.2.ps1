@@ -15,8 +15,8 @@
 
     .NOTES
         Author  : Enrico van de Laar (Twitter: @evdlaar)
-        Date    : December 2016
-        Version : 1.2
+        Date    : January 2017
+        Version : 1.2.2
 
         THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
         INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A 
@@ -224,7 +224,9 @@
 
             {
             
-            Write-Warning "$SourceServer has a SQL Server version lower than 2016 - ending script execution"            $logServer2016Check = $timestamp + " | " + $SourceServer + " has a SQL Server version lower than 2016, script processing stopped"
+            Write-Warning "$SourceServer has a SQL Server version lower than 2016 - ending script execution"
+
+            $logServer2016Check = $timestamp + " | " + $SourceServer + " has a SQL Server version lower than 2016, script processing stopped"
             Add-Content $logfile $logServer2016Check
 
             break
@@ -236,8 +238,16 @@
 
         # Check if the Query Store is set to Off or if it isn't configured
         if ($sqlCheckQueryStoreResult -eq "Off" -or [string]::IsNullOrEmpty($sqlCheckQueryStoreResult))
-            {            Write-Warning "$SourceDatabase not enabled for query store - ending script execution"            $logDBNoQS = $timestamp + " | " + "Query Store is disabled for database " + $SourceDatabase + ", script processing stopped"
-            Add-Content $logfile $logDBNoQS            break            }
+            {
+
+            Write-Warning "$SourceDatabase not enabled for query store - ending script execution"
+
+            $logDBNoQS = $timestamp + " | " + "Query Store is disabled for database " + $SourceDatabase + ", script processing stopped"
+            Add-Content $logfile $logDBNoQS
+
+            break
+
+            }
 
         
         # If the PlanConsistency or ComparePerf parameter is set to true we need to check if Query Store is enabled for the Target DB
@@ -250,8 +260,16 @@
 
             # Check if the Query Store is set to Off or if it isn't configured
             if ($sqlCheckTargetQueryStoreResult -eq "Off" -or [string]::IsNullOrEmpty($sqlCheckTargetQueryStoreResult))
-                {                Write-Warning "$TargetDatabase not enabled for query store - ending script execution"                $logDBNoQS = $timestamp + " | " + "Query Store is disabled for database " + $TargetDatabase + ", script processing stopped"
-                Add-Content $logfile $logDBNoQS                break                }
+                {
+
+                Write-Warning "$TargetDatabase not enabled for query store - ending script execution"
+
+                $logDBNoQS = $timestamp + " | " + "Query Store is disabled for database " + $TargetDatabase + ", script processing stopped"
+                Add-Content $logfile $logDBNoQS
+
+                break
+
+                }
 
             }
 
@@ -561,7 +579,8 @@
                             write-output $err.Message
                        }
 
-                    break                    }
+                    break
+                    }
 
 
                 # Set error count variable
@@ -683,7 +702,8 @@
                         Catch
 
                             {
-                                write-warning "$queryfile : could not retrieve query metrics on target server."                            }
+                                write-warning "$queryfile : could not retrieve query metrics on target server."
+                            }
 
                         }
 
@@ -717,7 +737,14 @@
     
     # Set connection to disconnect
     $sqlSourceConn.ConnectionContext.Disconnect()
-    $sqlTargetConn.ConnectionContext.Disconnect()
+
+     If ($PlanConsistency -eq $true -or $ComparePerf -eq $true)
+
+            { 
+
+            $sqlTargetConn.ConnectionContext.Disconnect()
+
+            }
 
     ######################################################
     # Return table with the query performance comparison
