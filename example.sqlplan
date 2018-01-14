@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-16"?>
+ <ShowPlanXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="1.5" Build="13.0.4435.0" xmlns="http://schemas.microsoft.com/sqlserver/2004/07/showplan">
+  <BatchSequence>
+    <Batch>
+      <Statements>
+        <StmtSimple StatementCompId="1" StatementEstRows="60855" StatementId="1" StatementOptmLevel="FULL" CardinalityEstimationModelVersion="120" StatementSubTreeCost="1.86063" StatementText="Select  &#xD;&#xA; p.EnglishProductName,&#xD;&#xA; s.SalesAmount,&#xD;&#xA; s.UnitPrice,&#xD;&#xA; s.DiscountAmount&#xD;&#xA;from FactResellerSales s&#xD;&#xA;INNER JOIN DimProduct p on s.ProductKey = p.ProductKey" StatementType="SELECT" QueryHash="0x753D86ABF5F48639" QueryPlanHash="0xED000B48DFA7D3AF" RetrievedFromCache="true" SecurityPolicyApplied="false">
+          <StatementSetOptions ANSI_NULLS="true" ANSI_PADDING="true" ANSI_WARNINGS="true" ARITHABORT="true" CONCAT_NULL_YIELDS_NULL="true" NUMERIC_ROUNDABORT="false" QUOTED_IDENTIFIER="true" />
+          <QueryPlan DegreeOfParallelism="1" MemoryGrant="1848" CachedPlanSize="40" CompileTime="1" CompileCPU="1" CompileMemory="288">
+            <MissingIndexes>
+              <MissingIndexGroup Impact="89.6272">
+                <MissingIndex Database="[AdventureWorksDW2014]" Schema="[dbo]" Table="[FactResellerSales]">
+                  <ColumnGroup Usage="EQUALITY">
+                    <Column Name="[ProductKey]" ColumnId="1" />
+                  </ColumnGroup>
+                  <ColumnGroup Usage="INCLUDE">
+                    <Column Name="[UnitPrice]" ColumnId="14" />
+                    <Column Name="[DiscountAmount]" ColumnId="17" />
+                    <Column Name="[SalesAmount]" ColumnId="20" />
+                  </ColumnGroup>
+                </MissingIndex>
+              </MissingIndexGroup>
+            </MissingIndexes>
+            <MemoryGrantInfo SerialRequiredMemory="1024" SerialDesiredMemory="1848" RequiredMemory="1024" DesiredMemory="1848" RequestedMemory="1848" GrantWaitTime="0" GrantedMemory="1848" MaxUsedMemory="640" MaxQueryMemory="87256" />
+            <OptimizerHardwareDependentProperties EstimatedAvailableMemoryGrant="104834" EstimatedPagesCached="13104" EstimatedAvailableDegreeOfParallelism="2" MaxCompileMemory="195712" />
+            <WaitStats>
+              <Wait WaitType="SOS_SCHEDULER_YIELD" WaitTimeMs="3" WaitCount="73" />
+              <Wait WaitType="ASYNC_NETWORK_IO" WaitTimeMs="143" WaitCount="11" />
+            </WaitStats>
+            <QueryTimeStats CpuTime="415" ElapsedTime="561" />
+            <RelOp AvgRowSize="85" EstimateCPU="0.363496" EstimateIO="0" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Row" EstimateRows="60855" LogicalOp="Inner Join" NodeId="0" Parallel="false" PhysicalOp="Hash Match" EstimatedTotalSubtreeCost="1.86063">
+              <OutputList>
+                <ColumnReference Database="[AdventureWorksDW2014]" Schema="[dbo]" Table="[FactResellerSales]" Alias="[s]" Column="UnitPrice" />
+                <ColumnReference Database="[AdventureWorksDW2014]" Schema="[dbo]" Table="[FactResellerSales]" Alias="[s]" Column="DiscountAmount" />
+                <ColumnReference Database="[AdventureWorksDW2014]" Schema="[dbo]" Table="[FactResellerSales]" Alias="[s]" Column="SalesAmount" />
+                <ColumnReference Database="[AdventureWorksDW2014]" Schema="[dbo]" Table="[DimProduct]" Alias="[p]" Column="EnglishProductName" />
+              </OutputList>
+              <MemoryFractions Input="1" Output="1" />
+              <RunTimeInformation>
+                <RunTimeCountersPerThread Thread="0" ActualRows="60855" Batches="0" ActualEndOfScans="1" ActualExecutions="1" ActualExecutionMode="Row" ActualElapsedms="22" ActualCPUms="22" ActualScans="0" ActualLogicalReads="0" ActualPhysicalReads="0" ActualReadAheads="0" ActualLobLogicalReads="0" ActualLobPhysicalReads="0" ActualLobReadAheads="0" InputMemoryGrant="1848" OutputMemoryGrant="1848" UsedMemoryGrant="640" />
+              </RunTimeInformation>
+              <Hash>
+                <DefinedValues />
+                <HashKeysBuild>
+                  <ColumnReference Database="[AdventureWorksDW2014]" Schema="[dbo]" Table="[DimProduct]" Alias="[p]" Column="ProductKey" />
+                </HashKeysBuild>
+                <HashKeysProbe>
+                  <ColumnReference Database="[AdventureWorksDW2014]" Schema="[dbo]" Table="[FactResellerSales]" Alias="[s]" Column="ProductKey" />
+                </HashKeysProbe>
+                <RelOp AvgRowSize="65" EstimateCPU="0.0008236" EstimateIO="0.18831" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Row" EstimateRows="606" EstimatedRowsRead="606" LogicalOp="Clustered Index Scan" NodeId="1" Parallel="false" PhysicalOp="Clustered Index Scan" EstimatedTotalSubtreeCost="0.189134" TableCardinality="606">
+                  <OutputList>
+                    <ColumnReference Database="[AdventureWorksDW2014]" Schema="[dbo]" Table="[DimProduct]" Alias="[p]" Column="ProductKey" />
+                    <ColumnReference Database="[AdventureWorksDW2014]" Schema="[dbo]" Table="[DimProduct]" Alias="[p]" Column="EnglishProductName" />
+                  </OutputList>
+                  <RunTimeInformation>
+                    <RunTimeCountersPerThread Thread="0" ActualRows="606" ActualRowsRead="606" Batches="0" ActualEndOfScans="1" ActualExecutions="1" ActualExecutionMode="Row" ActualElapsedms="0" ActualCPUms="0" ActualScans="1" ActualLogicalReads="253" ActualPhysicalReads="0" ActualReadAheads="0" ActualLobLogicalReads="0" ActualLobPhysicalReads="0" ActualLobReadAheads="0" />
+                  </RunTimeInformation>
+                  <IndexScan Ordered="false" ForcedIndex="false" ForceScan="false" NoExpandHint="false" Storage="RowStore">
+                    <DefinedValues>
+                      <DefinedValue>
+                        <ColumnReference Database="[AdventureWorksDW2014]" Schema="[dbo]" Table="[DimProduct]" Alias="[p]" Column="ProductKey" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[AdventureWorksDW2014]" Schema="[dbo]" Table="[DimProduct]" Alias="[p]" Column="EnglishProductName" />
+                      </DefinedValue>
+                    </DefinedValues>
+                    <Object Database="[AdventureWorksDW2014]" Schema="[dbo]" Table="[DimProduct]" Index="[PK_DimProduct_ProductKey]" Alias="[p]" IndexKind="Clustered" Storage="RowStore" />
+                  </IndexScan>
+                </RelOp>
+                <RelOp AvgRowSize="35" EstimateCPU="0.0670975" EstimateIO="1.2409" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Row" EstimateRows="60855" EstimatedRowsRead="60855" LogicalOp="Clustered Index Scan" NodeId="2" Parallel="false" PhysicalOp="Clustered Index Scan" EstimatedTotalSubtreeCost="1.308" TableCardinality="60855">
+                  <OutputList>
+                    <ColumnReference Database="[AdventureWorksDW2014]" Schema="[dbo]" Table="[FactResellerSales]" Alias="[s]" Column="ProductKey" />
+                    <ColumnReference Database="[AdventureWorksDW2014]" Schema="[dbo]" Table="[FactResellerSales]" Alias="[s]" Column="UnitPrice" />
+                    <ColumnReference Database="[AdventureWorksDW2014]" Schema="[dbo]" Table="[FactResellerSales]" Alias="[s]" Column="DiscountAmount" />
+                    <ColumnReference Database="[AdventureWorksDW2014]" Schema="[dbo]" Table="[FactResellerSales]" Alias="[s]" Column="SalesAmount" />
+                  </OutputList>
+                  <RunTimeInformation>
+                    <RunTimeCountersPerThread Thread="0" ActualRows="60855" ActualRowsRead="60855" Batches="0" ActualEndOfScans="1" ActualExecutions="1" ActualExecutionMode="Row" ActualElapsedms="11" ActualCPUms="11" ActualScans="1" ActualLogicalReads="1682" ActualPhysicalReads="0" ActualReadAheads="0" ActualLobLogicalReads="0" ActualLobPhysicalReads="0" ActualLobReadAheads="0" />
+                  </RunTimeInformation>
+                  <IndexScan Ordered="false" ForcedIndex="false" ForceScan="false" NoExpandHint="false" Storage="RowStore">
+                    <DefinedValues>
+                      <DefinedValue>
+                        <ColumnReference Database="[AdventureWorksDW2014]" Schema="[dbo]" Table="[FactResellerSales]" Alias="[s]" Column="ProductKey" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[AdventureWorksDW2014]" Schema="[dbo]" Table="[FactResellerSales]" Alias="[s]" Column="UnitPrice" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[AdventureWorksDW2014]" Schema="[dbo]" Table="[FactResellerSales]" Alias="[s]" Column="DiscountAmount" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[AdventureWorksDW2014]" Schema="[dbo]" Table="[FactResellerSales]" Alias="[s]" Column="SalesAmount" />
+                      </DefinedValue>
+                    </DefinedValues>
+                    <Object Database="[AdventureWorksDW2014]" Schema="[dbo]" Table="[FactResellerSales]" Index="[PK_FactResellerSales_SalesOrderNumber_SalesOrderLineNumber]" Alias="[s]" IndexKind="Clustered" Storage="RowStore" />
+                  </IndexScan>
+                </RelOp>
+              </Hash>
+            </RelOp>
+          </QueryPlan>
+        </StmtSimple>
+      </Statements>
+    </Batch>
+  </BatchSequence>
+</ShowPlanXML>
